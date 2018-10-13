@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 
 
 public class Register extends javax.swing.JFrame {
-   private static final String USERNAMEE= "u572797458_soft";
+private static final String USERNAMEE= "u572797458_soft";
 private static final String PASSWORDD= "password0880";
 private static final String CONN_STRING="jdbc:mysql://db144.hostinger.in.th/u572797458_soft";
     /**
@@ -43,6 +43,7 @@ private static final String CONN_STRING="jdbc:mysql://db144.hostinger.in.th/u572
         Passwordfield = new javax.swing.JPasswordField();
         jPanel6 = new javax.swing.JPanel();
         Clear = new javax.swing.JButton();
+        Register1 = new javax.swing.JButton();
         Register = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -150,7 +151,18 @@ private static final String CONN_STRING="jdbc:mysql://db144.hostinger.in.th/u572
             }
         });
         jPanel6.add(Clear);
-        Clear.setBounds(730, 20, 216, 90);
+        Clear.setBounds(420, 50, 216, 90);
+
+        Register1.setBackground(new java.awt.Color(5, 196, 107));
+        Register1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        Register1.setText("Back");
+        Register1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Register1ActionPerformed(evt);
+            }
+        });
+        jPanel6.add(Register1);
+        Register1.setBounds(160, 50, 216, 90);
 
         Register.setBackground(new java.awt.Color(5, 196, 107));
         Register.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
@@ -161,7 +173,7 @@ private static final String CONN_STRING="jdbc:mysql://db144.hostinger.in.th/u572
             }
         });
         jPanel6.add(Register);
-        Register.setBounds(510, 20, 216, 90);
+        Register.setBounds(700, 50, 216, 90);
 
         jPanel3.add(jPanel6);
         jPanel6.setBounds(-10, 660, 1040, 180);
@@ -214,14 +226,17 @@ private static final String CONN_STRING="jdbc:mysql://db144.hostinger.in.th/u572
     }//GEN-LAST:event_PasswordfieldActionPerformed
 
     private void ClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClearActionPerformed
-        // TODO add your handling code here:
+
+
+
+       Usernamefield.setText("");
+       Passwordfield.setText(""); 
+       Repasswordfield.setText("");
+       // TODO add your handling code here:
     }//GEN-LAST:event_ClearActionPerformed
 
     private void RegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterActionPerformed
-      LoginForm go = new  LoginForm();
-    go.setVisible(true);
-   setVisible(false);
-        PreparedStatement pst;
+            PreparedStatement pst;
   
 
                 if(Usernamefield.getText().equals("")||
@@ -274,42 +289,23 @@ private static final String CONN_STRING="jdbc:mysql://db144.hostinger.in.th/u572
 
 
        
-  //   LoginForm go = new  LoginForm();
-   //  go.setVisible(true);
-   //  setVisible(false);
+    LoginForm go = new  LoginForm();
+    go.setVisible(true);
+    setVisible(false);
     }//GEN-LAST:event_RegisterActionPerformed
+
+    private void Register1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Register1ActionPerformed
+       
+        
+        new LoginForm().setVisible(true);
+      this.dispose();   
+    }//GEN-LAST:event_Register1ActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
+       
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Register().setVisible(true);
@@ -321,6 +317,7 @@ private static final String CONN_STRING="jdbc:mysql://db144.hostinger.in.th/u572
     private javax.swing.JButton Clear;
     private javax.swing.JPasswordField Passwordfield;
     private javax.swing.JButton Register;
+    private javax.swing.JButton Register1;
     private javax.swing.JPasswordField Repasswordfield;
     private javax.swing.JTextField Usernamefield;
     private javax.swing.JLabel jLabel1;

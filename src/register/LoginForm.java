@@ -9,6 +9,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 
@@ -27,24 +30,23 @@ private static final String CONN_STRING="jdbc:mysql://db144.hostinger.in.th/u572
     private void initComponents() {
 
         jPanel5 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
-        jPanel6 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        Usurnamefield = new javax.swing.JTextField();
+        Usernamefield = new javax.swing.JTextField();
         Passwordfield = new javax.swing.JPasswordField();
-        jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        login = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        Register = new javax.swing.JButton();
+        Clear = new javax.swing.JButton();
         Register1 = new javax.swing.JButton();
         jPanel11 = new javax.swing.JPanel();
         jPanel12 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jPanel8 = new javax.swing.JPanel();
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -63,44 +65,6 @@ private static final String CONN_STRING="jdbc:mysql://db144.hostinger.in.th/u572
         setSize(new java.awt.Dimension(1200, 1200));
         getContentPane().setLayout(null);
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setLayout(null);
-
-        jPanel4.setBackground(new java.awt.Color(250, 177, 160));
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 850, Short.MAX_VALUE)
-        );
-
-        jPanel2.add(jPanel4);
-        jPanel4.setBounds(0, 0, 100, 850);
-
-        jPanel6.setBackground(new java.awt.Color(250, 177, 160));
-
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 850, Short.MAX_VALUE)
-        );
-
-        jPanel2.add(jPanel6);
-        jPanel6.setBounds(930, 0, 100, 850);
-
-        getContentPane().add(jPanel2);
-        jPanel2.setBounds(0, 140, 1030, 310);
-
         jPanel1.setBackground(new java.awt.Color(255, 118, 117));
         jPanel1.setLayout(null);
 
@@ -116,16 +80,16 @@ private static final String CONN_STRING="jdbc:mysql://db144.hostinger.in.th/u572
         jPanel1.add(jLabel10);
         jLabel10.setBounds(160, 130, 220, 70);
 
-        Usurnamefield.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        Usurnamefield.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
-        Usurnamefield.setOpaque(false);
-        Usurnamefield.addActionListener(new java.awt.event.ActionListener() {
+        Usernamefield.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        Usernamefield.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
+        Usernamefield.setOpaque(false);
+        Usernamefield.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                UsurnamefieldActionPerformed(evt);
+                UsernamefieldActionPerformed(evt);
             }
         });
-        jPanel1.add(Usurnamefield);
-        Usurnamefield.setBounds(360, 80, 460, 40);
+        jPanel1.add(Usernamefield);
+        Usernamefield.setBounds(360, 80, 460, 40);
 
         Passwordfield.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         Passwordfield.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
@@ -138,46 +102,58 @@ private static final String CONN_STRING="jdbc:mysql://db144.hostinger.in.th/u572
         jPanel1.add(Passwordfield);
         Passwordfield.setBounds(360, 190, 460, 50);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/register/xo-logo-mark-mono11.png"))); // NOI18N
-        jPanel1.add(jLabel2);
-        jLabel2.setBounds(250, -120, 750, 290);
-
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        login.setBackground(new java.awt.Color(255, 87, 34));
+        login.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        login.setForeground(new java.awt.Color(255, 255, 255));
+        login.setText("Login");
+        login.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 5, 10, 5, new java.awt.Color(0, 153, 153)));
+        login.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                loginActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1);
-        jButton1.setBounds(440, 270, 190, 90);
+        jPanel1.add(login);
+        login.setBounds(470, 260, 190, 90);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 440, 1030, 360);
 
+        jLabel3.setBackground(new java.awt.Color(255, 63, 52));
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 80)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 63, 52));
+        jLabel3.setText("Game");
+        jLabel3.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new java.awt.Color(102, 0, 204)));
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(530, 180, 270, 120);
+
         jPanel3.setBackground(new java.awt.Color(108, 92, 231));
         jPanel3.setLayout(null);
 
-        Register.setBackground(new java.awt.Color(255, 63, 52));
-        Register.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        Register.setText("Clear");
-        Register.addActionListener(new java.awt.event.ActionListener() {
+        Clear.setBackground(new java.awt.Color(255, 63, 52));
+        Clear.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        Clear.setForeground(new java.awt.Color(255, 255, 255));
+        Clear.setText("Clear");
+        Clear.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 5, 10, 5, new java.awt.Color(0, 0, 0)));
+        Clear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RegisterActionPerformed(evt);
+                ClearActionPerformed(evt);
             }
         });
-        jPanel3.add(Register);
-        Register.setBounds(540, 50, 216, 90);
+        jPanel3.add(Clear);
+        Clear.setBounds(700, 40, 216, 90);
 
-        Register1.setBackground(new java.awt.Color(255, 221, 89));
+        Register1.setBackground(new java.awt.Color(51, 105, 30));
         Register1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        Register1.setForeground(new java.awt.Color(255, 255, 255));
         Register1.setText("Register");
+        Register1.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 5, 10, 5, new java.awt.Color(0, 0, 0)));
         Register1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Register1ActionPerformed(evt);
             }
         });
         jPanel3.add(Register1);
-        Register1.setBounds(310, 50, 216, 90);
+        Register1.setBounds(230, 40, 216, 90);
 
         getContentPane().add(jPanel3);
         jPanel3.setBounds(0, 790, 1030, 190);
@@ -212,23 +188,42 @@ private static final String CONN_STRING="jdbc:mysql://db144.hostinger.in.th/u572
         getContentPane().add(jPanel11);
         jPanel11.setBounds(0, 0, 1060, 130);
 
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/register/xo-logo-mark-mono11.png"))); // NOI18N
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(210, 140, 750, 290);
+
+        jPanel8.setBackground(new java.awt.Color(255, 152, 0));
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1020, Short.MAX_VALUE)
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 310, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(jPanel8);
+        jPanel8.setBounds(0, 130, 1020, 310);
+
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void UsurnamefieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsurnamefieldActionPerformed
+    private void UsernamefieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsernamefieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_UsurnamefieldActionPerformed
+    }//GEN-LAST:event_UsernamefieldActionPerformed
 
     private void PasswordfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PasswordfieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_PasswordfieldActionPerformed
 
-    private void RegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterActionPerformed
-       // LoginForm go = new  LoginForm();
-      //  go.setVisible(true);
-      //  setVisible(false);
-    }//GEN-LAST:event_RegisterActionPerformed
+    private void ClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClearActionPerformed
+       Usernamefield.setText("");
+       Passwordfield.setText("");
+    }//GEN-LAST:event_ClearActionPerformed
 
     private void Register1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Register1ActionPerformed
         //TODO add your handling code here:
@@ -236,9 +231,43 @@ private static final String CONN_STRING="jdbc:mysql://db144.hostinger.in.th/u572
       this.dispose();
     }//GEN-LAST:event_Register1ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
+
+        PreparedStatement pst;
+        Connection  connection  ;
+
+          
+        try {
+            String serverName = "db144.hostinger.in.th";
+            String mydatabase = "u572797458_soft";
+            String url = "jdbc:mysql://" + serverName + "/" + mydatabase;
+            String username = "u572797458_soft";
+            String password = "password0880";
+          //  Connection connection;
+            connection = DriverManager.getConnection(url, username, password);
+            connection.createStatement();
+            pst=connection.prepareStatement("Select * from Username where Username = ? AND password= ?");
+            pst.setString(1, Usernamefield.getText());
+            pst.setString(2, String.valueOf(Passwordfield.getPassword()));
+  ResultSet rs = pst.executeQuery();
+          if(rs.next()){
+              if(Usernamefield.getText().equals( new String(Passwordfield.getPassword())));{
+              JOptionPane.showMessageDialog(this, "ลงชื่อเข้าใจสำเร็จ");
+          }
+             setVisible(false);
+             Lobby mf=  new Lobby();
+             mf.setVisible(true);
+          }
+          else{
+               JOptionPane.showMessageDialog(this, "Username หรือ Password ผิดพลาด");
+                          Usernamefield.setText("");
+       Passwordfield.setText("");
+          }
+        }catch(SQLException ex){
+         
+        }
+
+    }//GEN-LAST:event_loginActionPerformed
 
     public static void main(String args[]) {
       
@@ -250,24 +279,23 @@ private static final String CONN_STRING="jdbc:mysql://db144.hostinger.in.th/u572
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Clear;
     private javax.swing.JPasswordField Passwordfield;
-    private javax.swing.JButton Register;
     private javax.swing.JButton Register1;
-    private javax.swing.JTextField Usurnamefield;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JTextField Usernamefield;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JButton login;
     // End of variables declaration//GEN-END:variables
 }
