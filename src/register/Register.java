@@ -226,9 +226,6 @@ private static final String CONN_STRING="jdbc:mysql://db144.hostinger.in.th/u572
     }//GEN-LAST:event_PasswordfieldActionPerformed
 
     private void ClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClearActionPerformed
-
-
-
        Usernamefield.setText("");
        Passwordfield.setText(""); 
        Repasswordfield.setText("");
@@ -237,7 +234,6 @@ private static final String CONN_STRING="jdbc:mysql://db144.hostinger.in.th/u572
 
     private void RegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterActionPerformed
             PreparedStatement pst;
-  
 
                 if(Usernamefield.getText().equals("")||
                         new String(Passwordfield.getPassword()).equals("")||

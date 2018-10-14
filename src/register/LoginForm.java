@@ -118,11 +118,11 @@ private static final String CONN_STRING="jdbc:mysql://db144.hostinger.in.th/u572
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 440, 1030, 360);
 
-        jLabel3.setBackground(new java.awt.Color(255, 63, 52));
+        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 80)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 63, 52));
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Game");
-        jLabel3.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new java.awt.Color(102, 0, 204)));
+        jLabel3.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 0, new java.awt.Color(102, 0, 204)));
         getContentPane().add(jLabel3);
         jLabel3.setBounds(530, 180, 270, 120);
 
@@ -198,7 +198,7 @@ private static final String CONN_STRING="jdbc:mysql://db144.hostinger.in.th/u572
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1020, Short.MAX_VALUE)
+            .addGap(0, 1040, Short.MAX_VALUE)
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -206,7 +206,7 @@ private static final String CONN_STRING="jdbc:mysql://db144.hostinger.in.th/u572
         );
 
         getContentPane().add(jPanel8);
-        jPanel8.setBounds(0, 130, 1020, 310);
+        jPanel8.setBounds(0, 130, 1040, 310);
 
         pack();
         setLocationRelativeTo(null);
@@ -227,7 +227,7 @@ private static final String CONN_STRING="jdbc:mysql://db144.hostinger.in.th/u572
 
     private void Register1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Register1ActionPerformed
         //TODO add your handling code here:
-      new Register().setVisible(true);
+      new Registrerform().setVisible(true);
       this.dispose();
     }//GEN-LAST:event_Register1ActionPerformed
 
